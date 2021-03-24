@@ -103,6 +103,12 @@ resource "aws_lambda_function_event_invoke_config" "default" {
   count                  = var.retries != null ? 1 : 0
   function_name          = aws_lambda_function.default.function_name
   maximum_retry_attempts = var.retries
+
+  destination_config {
+    on_failure{
+      destination = var.failure_sns_arn
+    }
+  }
 }
 
 resource "aws_lambda_function" "default" {

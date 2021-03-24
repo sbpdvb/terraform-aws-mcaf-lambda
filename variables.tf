@@ -27,6 +27,12 @@ variable "environment" {
   description = "A map of environment variables to assign to the lambda"
 }
 
+variable "failure_sns_arn" {
+  type = string
+  default = null
+  description = "SNS ARN to send failed invocations"
+}
+
 variable "filename" {
   type        = string
   default     = null
